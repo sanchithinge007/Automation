@@ -24,6 +24,7 @@ driver.get(ConfigReader.get("url"));
 
 public void enterUsername(String user) {
 driver.findElement(username).sendKeys(user);
+System.out.println("Sahajayoga aaj ka mahayoga");
 }
 
 
