@@ -1,0 +1,55 @@
+pipeline {
+    agent any
+
+    tools {
+        maven 'Maven3'
+        jdk 'JDK17'
+    }
+
+    stages {
+        stage('Prepare') {
+    steps {
+        sh 'mkdir -p target/screenshots'
+    }
+}  
+
+        stage('Checkout Code') {
+            steps {
+                git branch: 'master',
+                    url: 'https://github.com/sanchithinge007/Automation.git'
+            }
+        }
+
+        stage('Clean & Build') {
+            steps {
+                bat 'mvn clean compile'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                bat 'mvn test'
+            }
+        }
+
+        stage('Generate Allure Report') {
+            steps {
+                allure includeProperties: false,
+                       jdk: '',
+                       results: [[path: 'target/allure-results']]
+            }
+        }
+    }
+
+    post {
+        always {
+            archiveArtifacts artifacts: 'target/screenshots/*.png', allowEmptyArchive: true
+        }
+        success {
+            echo 'Build Passed ✅'
+        }
+        failure {
+            echo 'Build Failed ❌'
+        }
+    }
+}
