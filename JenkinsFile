@@ -17,13 +17,17 @@ pipeline {
 
         stage('Clean & Build') {
             steps {
+              dir('CucumberFramework') {
                 bat 'mvn clean compile'
+              } 
             }
         }
 
         stage('Run Tests') {
             steps {
+                dir('CucumberFramework') {
                 bat 'mvn test'
+               }
             }
         }
 
