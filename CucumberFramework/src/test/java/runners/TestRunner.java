@@ -17,6 +17,7 @@ import io.cucumber.testng.CucumberOptions;
     },
     monochrome = true,
     publish = false
+    
     // tags = "@smoke or @regression"   // ✅ control execution
 )
 @Listeners({AllureTestNg.class})
