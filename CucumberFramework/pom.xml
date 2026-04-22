@@ -11,7 +11,7 @@
             <version>3.2.5</version>
             <configuration>
                 <systemPropertyVariables>
-                    <allure.results.directory>CucumberFramework/target/allure-results</allure.results.directory>
+                    <allure.results.directory>allure-results</allure.results.directory>
                 </systemPropertyVariables>
             </configuration>
         </plugin>
