@@ -35,7 +35,7 @@ pipeline {
             steps {
                 allure includeProperties: false,
                        jdk: '',
-                       results: [[path: 'CucumberFramework/target/allure-results']]
+                       results: [[path: 'allure-results']]
             }
         }
     }
