@@ -42,7 +42,7 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: 'target/screenshots/*.png', allowEmptyArchive: true
+            archiveArtifacts artifacts: 'CucumberFramework/target/screenshots/*.png', allowEmptyArchive: true
         }
         success {
             echo 'Build Passed ✅'
