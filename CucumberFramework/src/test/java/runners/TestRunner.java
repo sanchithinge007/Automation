@@ -11,8 +11,8 @@ import io.cucumber.testng.CucumberOptions;
     glue = {"stepdefinitions", "hooks"},
     plugin = {
         "pretty",
-        "html:CucumberFramework/target/cucumber-report.html",
-        "json:CucumberFramework/target/cucumber.json",
+        "html:CucumberFramework/CucumberFramework/target/cucumber-report.html",
+        "json:CucumberFramework/CucumberFramework/target/cucumber.json",
         "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
     },
     monochrome = true,
