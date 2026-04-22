@@ -14,7 +14,7 @@ WebDriver driver = DriverFactory.getDriver();
 
 By username = By.id("username");
 By password = By.name("password");
-By loginBtn = By.id("submt");
+By loginBtn = By.id("submit");
 
 
 public void openUrl() {
