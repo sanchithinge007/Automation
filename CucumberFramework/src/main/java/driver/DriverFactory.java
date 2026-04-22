@@ -15,7 +15,7 @@ private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 public static void initDriver(String browser) {
 if (browser.equalsIgnoreCase("chrome")) {
 	ChromeOptions options = new ChromeOptions();
-	options.setBinary("D:\\Downloads\\ChromeSetup.exe");
+	options.setBinary("C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Google Chrome.lnk");
     options.addArguments("--headless=new");
     options.addArguments("--no-sandbox");
     options.addArguments("--disable-dev-shm-usage");
