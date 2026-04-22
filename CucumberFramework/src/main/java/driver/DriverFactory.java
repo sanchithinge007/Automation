@@ -8,32 +8,42 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DriverFactory {
 
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    public static void initDriver(String browser) {
 
+        if (browser.equalsIgnoreCase("chrome")) {
 
-public static void initDriver(String browser) {
-if (browser.equalsIgnoreCase("chrome")) {
-	ChromeOptions options = new ChromeOptions();
-	options.setBinary("C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe");
-    options.addArguments("--headless=new");
-    options.addArguments("--no-sandbox");
-    options.addArguments("--disable-dev-shm-usage");
-WebDriverManager.chromedriver().setup();
-driver.set(new ChromeDriver(options));
-}
-}
+            // ✅ Auto-manage correct driver version
+            WebDriverManager.chromedriver().clearDriverCache().setup();
 
-	
-public static WebDriver getDriver() {
-return driver.get();
-}
+            ChromeOptions options = new ChromeOptions();
 
+            // ✅ Run headless only in CI (Jenkins)
+            String headless = System.getProperty("headless");
 
-public static void quitDriver() {
-if (driver.get() != null) {
-driver.get().quit();
-driver.remove();
-}
-} 
+            if ("true".equalsIgnoreCase(headless)) {
+                options.addArguments("--headless=new");
+                options.addArguments("--no-sandbox");
+                options.addArguments("--disable-dev-shm-usage");
+            }
+
+            // ✅ Stability options
+            options.addArguments("--remote-allow-origins=*");
+            options.addArguments("--start-maximized");
+
+            driver.set(new ChromeDriver(options));
+        }
+    }
+
+    public static WebDriver getDriver() {
+        return driver.get();
+    }
+
+    public static void quitDriver() {
+        if (driver.get() != null) {
+            driver.get().quit();
+            driver.remove();
+        }
+    }
 }
