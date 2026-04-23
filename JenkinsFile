@@ -1,6 +1,6 @@
 pipeline {
     agent any
-
+ 
     tools {
         maven 'Maven3'
         jdk 'JDK17'
@@ -10,7 +10,7 @@ pipeline {
         
         stage('Checkout Code') {
             steps {
-                git branch: 'master',
+                git branch: 'master', 
                     url: 'https://github.com/sanchithinge007/Automation.git'
             }
         }
@@ -26,7 +26,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 dir('CucumberFramework') {
-                bat 'mvn test'
+                bat 'mvn test -Ddataproviderthreadcount=5 -Dcucumber.filter.tags="@Set1"'
                }
             }
         }
